@@ -1,0 +1,3 @@
+id,name,email,is_active
+3,Charlie,charlie@example.com,true
+4,David,david@example.com,false

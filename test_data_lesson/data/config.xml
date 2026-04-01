@@ -1,0 +1,10 @@
+<settings>
+    <app name="TestApp">
+        <version>1.0</version>
+        <debug>true</debug>
+    </app>
+    <database>
+        <host>localhost</host>
+        <port>5432</port>
+    </database>
+</settings>
