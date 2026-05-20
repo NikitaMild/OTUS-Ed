@@ -21,6 +21,7 @@ def get_xml_element():
     port = get_element_from_xml("config.xml", element="database/port")
     assert port == "5432"
 
+
 if __name__ == "__main__":
     test_json_loading()
     test_csv_loading()

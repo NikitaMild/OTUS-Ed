@@ -11,16 +11,24 @@ def read_csv(filename: str) -> List[Dict]:
         reader = csv.DictReader(f)
         return list(reader) 
 
-def write_csv(filename: str, data: List[Dict], fieldnames: List[str]) -> None:
+def write_csv(filename: str, data: List[Dict], fieldnames: List[str], method='w', write_headers=True) -> None:
     """Записывает список словарей в CSV"""
     file_path = BASE_DIR / "data" / filename
-    with open(file_path, 'w', encoding='utf-8', newline='') as f:
+    with open(file_path, method, encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
+        if write_headers:
+            writer.writeheader()
         writer.writerows(data)
 
 if __name__ == "__main__":
     data = read_csv("users.csv")
+    write_csv("users_update.csv", 
+              data=[{"id": 6, "name": "Denis", "email": "denis@example.com", "is_active": True}],
+              fieldnames=["id", "name", "email", "is_active"],
+              method='w',
+              write_headers=False
+            )
+    print(data)
     print(f"Loaded {len(data)} users from CSV")
     for user in data:
         print("Read user information:\n")

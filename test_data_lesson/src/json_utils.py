@@ -16,7 +16,9 @@ def write_json(filename: str, data: Union[list, dict]) -> None:
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+
 if __name__ == "__main__":
+    write_json("users_update.json", {"id": 6, "name": "Denis", "email": "denis@example.com", "is_active": True})
     data = read_json("users.json")
     print(f"Loaded {len(data)} users from JSON")
     for user in data:

@@ -7,10 +7,13 @@ def timer_context(task_name: str = "Operation"):
     print(f"Starting {task_name}...")
     start_time = time.time()
     try:
+        print("step  one!")
         yield
+        print("step three!")
     finally:
         end_time = time.time()
         print(f"Finished {task_name}. Duration: {end_time - start_time:.4f} seconds")
+
 
 # Пример использования класса
 class Suppressor:
@@ -22,6 +25,9 @@ class Suppressor:
         # Если вернуть True, исключение не пойдет дальше
         return True 
 
+
 if __name__ == "__main__":
     with timer_context("JSON Processing"):
-        time.sleep(1) # Имитация работы
+        time.sleep(2) # Имитация работы
+        print("step two!")
+
