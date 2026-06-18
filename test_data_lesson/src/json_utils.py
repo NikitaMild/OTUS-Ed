@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Union
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(f"BASE_DIR: {BASE_DIR}")
 
 def read_json(filename: str) -> Union[list, dict]:
     """Читает JSON файл и возвращает данные"""
@@ -18,10 +19,18 @@ def write_json(filename: str, data: Union[list, dict]) -> None:
 
 
 if __name__ == "__main__":
-    write_json("users_update.json", {"id": 6, "name": "Denis", "email": "denis@example.com", "is_active": True})
     data = read_json("users.json")
     print(f"Loaded {len(data)} users from JSON")
     for user in data:
         print("Read user information:\n")
         for key, value in user.items():
             print(f"{key}: {value}")
+
+    new_user = {
+        "id": 6,
+        "name": "Denis",
+        "email": "denis@example.com",
+        "is_active": True
+    }
+    data.append(new_user)
+    write_json("users_update.json", data)

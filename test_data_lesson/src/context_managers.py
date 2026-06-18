@@ -13,21 +13,39 @@ def timer_context(task_name: str = "Operation"):
     finally:
         end_time = time.time()
         print(f"Finished {task_name}. Duration: {end_time - start_time:.4f} seconds")
+        print("step four!")
 
 
-# Пример использования класса
-class Suppressor:
-    """Подавляет исключения внутри блока with"""
+class FileOpener:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+
     def __enter__(self):
-        return self
-    
+        print("1. [ENTER] Открываем файл...")
+        self.file = open(self.filename, self.mode)
+        return self.file  # Этот объект пойдет в переменную после "as"
+
     def __exit__(self, exc_type, exc_val, exc_tb):
-        # Если вернуть True, исключение не пойдет дальше
-        return True 
+        print("3. [EXIT] Закрываем файл в любом случае!")
+        self.file.close()
+
+        if exc_type is not None:
+            print(f"Замечена ошибка: {exc_type}. Но файл мы всё равно закрыли!")
+        
+        return True
 
 
 if __name__ == "__main__":
     with timer_context("JSON Processing"):
         time.sleep(2) # Имитация работы
         print("step two!")
+    print("step five!")
 
+    with FileOpener("data/test.txt", "w") as f:
+        print("2. [WITH] Пишем данные в файл...")
+        f.write("Hello World")
+        f.div()
+
+
+print('foo')

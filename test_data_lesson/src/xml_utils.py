@@ -17,6 +17,7 @@ def write_xml(filename: str, root: ET.Element) -> None:
     tree.write(file_path, encoding='utf-8', xml_declaration=True)
     print(f"Сделали новый XML файл по пути: {file_path}")
 
+
 def get_element_from_xml(filename: str, element: str) -> str:
     """Читает XML файл и берет возвращает элемент из дерева."""
     file_path = BASE_DIR / "data" / filename
@@ -35,7 +36,7 @@ if __name__ == "__main__":
 
     print(f"App: {app_name}, DB Host: {db_host}")
 
-    # Пример изменения:
+   # Пример изменения:
     old_version = root.find('app/version').text
 
     root.find('app/version').text = "1.1"
