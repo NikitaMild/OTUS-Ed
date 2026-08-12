@@ -1,6 +1,7 @@
 import pytest
 import allure
 import random
+import time
 
 class TestUserManagement:
     """Класс тестов управления пользователями"""
@@ -37,6 +38,7 @@ class TestUserManagement:
         """Поиск пользователя по имени"""
         search_term = "john"
         
+        time.sleep(10)
         with allure.step(f"Ищем пользователя: {search_term}"):
             # Симуляция поиска
             results = [{"id": 1, "name": "John Doe"}, {"id": 2, "name": "Johnny"}]

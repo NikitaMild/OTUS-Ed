@@ -19,4 +19,4 @@ def test_regression_case():
 def test_functional_case():
     """Функциональный тест"""
     result = len("Hello World")
-    assert result == 11
+    assert result == 13

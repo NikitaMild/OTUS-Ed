@@ -9,7 +9,7 @@ def test_with_json_attachment():
     
     with allure.step("Создаем JSON данные"):
         json_data = json.dumps(data, indent=2)
-    
+
     with allure.step("Добавляем JSON вложение"):
         allure.attach(json_data, "user_data.json", allure.attachment_type.JSON)
     
@@ -24,7 +24,10 @@ def test_with_text_attachment():
     ERROR: Database connection failed
     """
     
-    allure.attach(log_content, "test_log.txt", allure.attachment_type.TEXT)
+    with open("/home/nzhevelkov/example.txt", 'r') as f:
+        new_log_content = f.read()
+
+    allure.attach(new_log_content, "example.json", allure.attachment_type.TEXT)
     assert True
 
 def test_with_image_attachment():

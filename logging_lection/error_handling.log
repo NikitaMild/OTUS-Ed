@@ -1,0 +1,90 @@
+2026-08-13 01:34:31,325 [INFO] - ==================================================
+2026-08-13 01:34:31,325 [INFO] - === ДЕМОНСТРАЦИЯ ЛОГИРОВАНИЯ ОШИБОК ===
+2026-08-13 01:34:31,326 [INFO] - ==================================================
+2026-08-13 01:34:31,326 [INFO] - 
+--- Тест 1: Успешный парсинг ---
+2026-08-13 01:34:31,326 [DEBUG] - Парсинг числа: '42'
+2026-08-13 01:34:31,326 [DEBUG] - Вход в контекст: parse_number
+2026-08-13 01:34:31,326 [INFO] - Успешно распарсено: 42
+2026-08-13 01:34:31,326 [DEBUG] - Выход из контекста: parse_number (успешно)
+2026-08-13 01:34:31,326 [INFO] - Результат: 42
+2026-08-13 01:34:31,326 [INFO] - 
+--- Тест 2: Ошибка парсинга (некорректное значение) ---
+2026-08-13 01:34:31,326 [DEBUG] - Парсинг числа: 'не число'
+2026-08-13 01:34:31,326 [DEBUG] - Вход в контекст: parse_number
+2026-08-13 01:34:31,326 [ERROR] - !!! ОШИБКА в контексте 'parse_number': ValueError: invalid literal for int() with base 10: 'не число'
+Traceback (most recent call last):
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 69, in log_errors
+    yield
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 85, in parse_number
+    result = int(value)
+ValueError: invalid literal for int() with base 10: 'не число'
+2026-08-13 01:34:31,326 [INFO] - 
+--- Тест 3: Работа с конфигурацией ---
+2026-08-13 01:34:31,327 [DEBUG] - Чтение конфигурации: ключ 'host'
+2026-08-13 01:34:31,327 [DEBUG] - Вход в контекст: read_config_value
+2026-08-13 01:34:31,327 [INFO] - Значение 'host' = 'localhost'
+2026-08-13 01:34:31,327 [DEBUG] - Выход из контекста: read_config_value (успешно)
+2026-08-13 01:34:31,327 [INFO] - Host: localhost
+2026-08-13 01:34:31,327 [INFO] - 
+--- Тест 4: Отсутствующий ключ ---
+2026-08-13 01:34:31,327 [DEBUG] - Чтение конфигурации: ключ 'missing_key'
+2026-08-13 01:34:31,327 [DEBUG] - Вход в контекст: read_config_value
+2026-08-13 01:34:31,327 [WARNING] - Ключ 'missing_key' отсутствует в конфигурации
+2026-08-13 01:34:31,327 [ERROR] - !!! ОШИБКА в контексте 'read_config_value': KeyError: "Конфигурационный ключ 'missing_key' не найден"
+Traceback (most recent call last):
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 69, in log_errors
+    yield
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 99, in read_config_value
+    raise KeyError(f"Конфигурационный ключ '{key}' не найден")
+KeyError: "Конфигурационный ключ 'missing_key' не найден"
+2026-08-13 01:34:31,327 [INFO] - 
+--- Тест 5: Успешное деление ---
+2026-08-13 01:34:31,327 [DEBUG] - Деление: 100 / 4
+2026-08-13 01:34:31,327 [DEBUG] - Вход в контекст: divide_numbers
+2026-08-13 01:34:31,327 [INFO] - Результат деления: 25.0
+2026-08-13 01:34:31,328 [DEBUG] - Выход из контекста: divide_numbers (успешно)
+2026-08-13 01:34:31,328 [INFO] - Результат: 25.0
+2026-08-13 01:34:31,328 [INFO] - 
+--- Тест 6: Деление на ноль ---
+2026-08-13 01:34:31,328 [DEBUG] - Деление: 100 / 0
+2026-08-13 01:34:31,328 [DEBUG] - Вход в контекст: divide_numbers
+2026-08-13 01:34:31,328 [ERROR] - Попытка деления на ноль!
+2026-08-13 01:34:31,328 [ERROR] - !!! ОШИБКА в контексте 'divide_numbers': ZeroDivisionError: Деление на ноль невозможно
+Traceback (most recent call last):
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 69, in log_errors
+    yield
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 114, in divide_numbers
+    raise ZeroDivisionError("Деление на ноль невозможно")
+ZeroDivisionError: Деление на ноль невозможно
+2026-08-13 01:34:31,328 [INFO] - 
+--- Тест 7: Обработка списка ---
+2026-08-13 01:34:31,328 [DEBUG] - Обработка данных: 5 элементов
+2026-08-13 01:34:31,328 [DEBUG] - Вход в контекст: process_data
+2026-08-13 01:34:31,329 [INFO] - Обработано успешно: 5 элементов
+2026-08-13 01:34:31,329 [DEBUG] - Выход из контекста: process_data (успешно)
+2026-08-13 01:34:31,329 [INFO] - Результат: [2, 4, 6, 8, 10]
+2026-08-13 01:34:31,329 [INFO] - 
+--- Тест 8: Пустой список ---
+2026-08-13 01:34:31,329 [DEBUG] - Обработка данных: 0 элементов
+2026-08-13 01:34:31,329 [DEBUG] - Вход в контекст: process_data
+2026-08-13 01:34:31,329 [WARNING] - Получен пустой список данных
+2026-08-13 01:34:31,329 [ERROR] - !!! ОШИБКА в контексте 'process_data': IndexError: Нельзя обработать пустой список
+Traceback (most recent call last):
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 69, in log_errors
+    yield
+  File "/home/nzhevelkov/OTUS/OTUS-Ed/logging_lection/practice_5_error_handling_logs.py", line 129, in process_data
+    raise IndexError("Нельзя обработать пустой список")
+IndexError: Нельзя обработать пустой список
+2026-08-13 01:34:31,329 [INFO] - 
+
+2026-08-13 01:34:31,329 [INFO] - ==================================================
+2026-08-13 01:34:31,329 [INFO] - СТАТИСТИКА ОШИБОК:
+2026-08-13 01:34:31,329 [INFO] - ==================================================
+2026-08-13 01:34:31,329 [INFO] -   ValueError: 1 раз(а)
+2026-08-13 01:34:31,329 [INFO] -   KeyError: 1 раз(а)
+2026-08-13 01:34:31,329 [INFO] -   ZeroDivisionError: 1 раз(а)
+2026-08-13 01:34:31,329 [INFO] -   IndexError: 1 раз(а)
+2026-08-13 01:34:31,329 [INFO] - ==================================================
+2026-08-13 01:34:31,329 [INFO] - 
+=== Демонстрация завершена ===

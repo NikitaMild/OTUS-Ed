@@ -5,7 +5,7 @@ import time
 import random
 
 
-@pytest.mark.flaky(reruns=3, reruns_delay=1)
+@pytest.mark.flaky
 def test_flaky_test():
     """Тест с повторными попытками"""
     with allure.step("Пытаемся выполнить операцию"):

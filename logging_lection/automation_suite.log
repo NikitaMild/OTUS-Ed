@@ -1,0 +1,29 @@
+2026-08-13 00:44:50,792 [INFO] (AutomationFramework) === Запуск Практики №1: Логирование в нескольких файлах ===
+2026-08-13 00:44:53,105 [INFO] (AutomationFramework.BasePage) Переходим по адресу: https://habr.com/ru/articles/899244/
+2026-08-13 00:44:57,458 [INFO] (AutomationFramework.BasePage) Получен заголовок страницы: 'Тонкости работы с логгированием в Python: краткий гайд для разработчиков / Хабр'
+2026-08-13 00:44:57,459 [INFO] (AutomationFramework) Проверка в тесте прошла успешно. Title length: 79
+2026-08-13 00:44:58,529 [INFO] (AutomationFramework) Браузер закрыт.
+
+2026-08-13 00:48:59,022 [INFO] practice_1_basic.py::10:: === Запуск Практики №1: Логирование в нескольких файлах ===
+2026-08-13 00:48:59,872 [INFO] helper_page.py::11:: Переходим по адресу: https://habr.com/ru/articles/899244/
+2026-08-13 00:49:03,829 [INFO] helper_page.py::16:: Получен заголовок страницы: 'Тонкости работы с логгированием в Python: краткий гайд для разработчиков / Хабр'
+2026-08-13 00:49:03,829 [INFO] practice_1_basic.py::18:: Проверка в тесте прошла успешно. Title length: 79
+2026-08-13 00:49:04,900 [INFO] practice_1_basic.py::22:: Браузер закрыт.
+
+2026-08-13 00:51:19,472 [WARNING] practice_1_basic.py::22:: Браузер закрыт.
+
+2026-08-13 01:01:28,438 [INFO] practice_2_listener.py::26:: === Запуск Практики №2: Перехват событий через EventListener ===
+2026-08-13 01:01:32,530 [INFO] practice_2_listener.py::17:: -> [Listener] Готовимся кликнуть по <a> (текст: 'Хабр')
+2026-08-13 01:01:35,150 [INFO] practice_2_listener.py::20:: <- [Listener] Клик успешно завершен
+2026-08-13 01:01:36,226 [INFO] practice_2_listener.py::37:: Браузер закрыт.
+
+2026-08-13 01:03:15,291 [INFO] practice_2_listener.py::26:: === Запуск Практики №2: Перехват событий через EventListener ===
+2026-08-13 01:03:19,592 [ERROR] practice_2_listener.py::23:: !!! [Listener] Исключение: NoSuchElementException
+2026-08-13 01:03:19,663 [INFO] practice_2_listener.py::37:: Браузер закрыт.
+
+2026-08-13 01:09:45,322 [INFO] practice_3_js_logs.py::7:: === Запуск Практики №3: Сбор JS-логов браузера ===
+2026-08-13 01:09:47,562 [ERROR] practice_3_js_logs.py::21:: [Browser JS SEVERE] https://the-internet.herokuapp.com/javascript_error 6:51 Uncaught TypeError: Cannot read properties of undefined (reading 'xyz')
+2026-08-13 01:09:47,628 [INFO] practice_3_js_logs.py::26:: Браузер закрыт.
+
+2026-08-13 01:10:47,652 [ERROR] practice_3_js_logs.py::21:: [Browser JS SEVERE] https://the-internet.herokuapp.com/javascript_error 6:51 Uncaught TypeError: Cannot read properties of undefined (reading 'xyz')
+2026-08-13 01:11:03,418 [ERROR] practice_3_js_logs.py::21:: [Browser JS SEVERE] https://the-internet.herokuapp.com/javascript_error 6:51 Uncaught TypeError: Cannot read properties of undefined (reading 'xyz')
