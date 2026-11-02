@@ -21,7 +21,7 @@ class Calculator:
         if b == 0:
             self.logger.error("Попытка деления на ноль!")
             raise ValueError("Деление на ноль невозможно")
-        result = a // b
+        result = a / b
         self.logger.info(f"Результат деления: {result}")
         return result
 
@@ -31,17 +31,24 @@ def setup_logging(caplog):
     """
     Fixture, который настраивает логгер перед каждым тестом.
     autouse=True означает, что fixture сработает автоматически.
+
+    Здесь сознательно НЕ вызывается logging.basicConfig():
+      * в pytest обработчиками логирования управляет сам pytest
+        (их настраивает pytest.ini: log_level / log_cli / log_file),
+        поэтому basicConfig в этом месте всё равно ничего не делает;
+      * параметр handlers ожидает итерируемое (список), а не объект —
+        logging.basicConfig(handlers=logging.StreamHandler()) бросает TypeError.
     """
-    # Настройка корневого логгера для вывода в консоль
-    logging.basicConfig(
-        level=logging.DEBUG,
-        handlers=logging.StreamHandler(),
-        format='%(asctime)s [%(levelname)s] (%(name)s) %(message)s'
-    )
+    logger = logging.getLogger("Calculator")
+    logger.setLevel(logging.DEBUG)
+    # Перехватываем записи логгера "Calculator" в caplog на уровне DEBUG
     caplog.set_level(logging.DEBUG, logger="Calculator")
+
     # Yield вместо return - код после yield выполняется после теста (teardown)
     yield
-    logging.getLogger("Calculator")
+
+    # Возвращаем логгер в исходное состояние, чтобы тесты не влияли друг на друга
+    logger.setLevel(logging.NOTSET)
 
 
 class TestCalculator:
@@ -60,7 +67,6 @@ class TestCalculator:
         assert result == 5
 
         # Проверка, что логи были записаны
-        logging.debug(f"caplog: {caplog.text}")
         assert "Выполняем сложение: 2 + 3" in caplog.text
         assert "Результат сложения: 5" in caplog.text
 
@@ -74,11 +80,12 @@ class TestCalculator:
 
         result = calc.divide(10, 2)
 
-        assert result == 5
+        # divide возвращает float, поэтому сравниваем с 5.0
+        assert result == 5.0
 
         # Проверяем, что логи записались
         assert "Выполняем деление: 10 / 2" in caplog.text
-        assert "Результат деления: 5" in caplog.text
+        assert "Результат деления: 5.0" in caplog.text
 
         logging.info("Тест завершен успешно\n")
 
